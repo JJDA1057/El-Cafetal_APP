@@ -1,6 +1,6 @@
 ﻿namespace El_Cafetal_APP
 {
-    partial class AñadirPlantas
+    partial class btnEliminar
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            button1 = new Button();
-            button3 = new Button();
+            btnHome = new Button();
+            btn = new Button();
             button2 = new Button();
             dataviewDatos = new DataGridView();
             tbl_ID = new DataGridViewTextBoxColumn();
@@ -57,8 +57,8 @@
             // panel1
             // 
             panel1.BackColor = Color.SaddleBrown;
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(button3);
+            panel1.Controls.Add(btnHome);
+            panel1.Controls.Add(btn);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(dataviewDatos);
             panel1.Location = new Point(288, 1);
@@ -66,25 +66,27 @@
             panel1.Size = new Size(545, 450);
             panel1.TabIndex = 0;
             // 
-            // button1
+            // btnHome
             // 
-            button1.BackColor = Color.DarkRed;
-            button1.Location = new Point(416, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(126, 50);
-            button1.TabIndex = 10;
-            button1.Text = "Home";
-            button1.UseVisualStyleBackColor = false;
+            btnHome.BackColor = Color.DarkRed;
+            btnHome.Location = new Point(416, 0);
+            btnHome.Name = "btnHome";
+            btnHome.Size = new Size(126, 50);
+            btnHome.TabIndex = 10;
+            btnHome.Text = "Home";
+            btnHome.UseVisualStyleBackColor = false;
+            btnHome.Click += button1_Click;
             // 
-            // button3
+            // btn
             // 
-            button3.BackColor = Color.DarkRed;
-            button3.Location = new Point(321, 326);
-            button3.Name = "button3";
-            button3.Size = new Size(126, 38);
-            button3.TabIndex = 9;
-            button3.Text = "Eliminar";
-            button3.UseVisualStyleBackColor = false;
+            btn.BackColor = Color.DarkRed;
+            btn.Location = new Point(321, 326);
+            btn.Name = "btn";
+            btn.Size = new Size(126, 38);
+            btn.TabIndex = 9;
+            btn.Text = "Eliminar";
+            btn.UseVisualStyleBackColor = false;
+            btn.Click += button3_Click;
             // 
             // button2
             // 
@@ -236,7 +238,7 @@
             txtObserva.Size = new Size(178, 73);
             txtObserva.TabIndex = 12;
             // 
-            // AñadirPlantas
+            // btnEliminar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -255,7 +257,7 @@
             Controls.Add(lblLote);
             Controls.Add(label1);
             Controls.Add(panel1);
-            Name = "AñadirPlantas";
+            Name = "btnEliminar";
             Text = "AñadirPlantas";
             Load += AñadirPlantas_Load;
             panel1.ResumeLayout(false);
@@ -269,7 +271,7 @@
         private Panel panel1;
         private DataGridView dataviewDatos;
         private Label label1;
-        private Button button3;
+        private Button btn;
         private Button button2;
         private DataGridViewTextBoxColumn tbl_ID;
         private DataGridViewTextBoxColumn tblNombre;
@@ -287,6 +289,6 @@
         private TextBox txtFecha;
         private TextBox txtEstado;
         private TextBox txtObserva;
-        private Button button1;
+        private Button btnHome;
     }
 }

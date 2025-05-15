@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace El_Cafetal_APP
 {
-    public partial class AñadirPlantas : Form
+    public partial class btnEliminar : Form
     {
-        public AñadirPlantas()
+        public btnEliminar()
         {
             InitializeComponent();
         }
@@ -90,27 +90,41 @@ namespace El_Cafetal_APP
 
                 Planta nuevaPlanta = new Planta
                 {
-                    
+
                     id_lote = Convert.ToInt32(txtLote.Text),
                     fecha_plantacion = Convert.ToDateTime(txtFecha.Text),
                     estado = txtEstado.Text,
                     observaciones = txtObserva.Text
                 };
 
-                
+
                 plantas.Add(nuevaPlanta);
                 dataviewDatos.Rows.Add(txtLote.Text,
                                         txtPlanta_name.Text,
                                         txtFecha.Text,
                                         txtEstado.Text,
                                         txtObserva.Text
-                );  
+                );
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: Los Datos no pudieron ser almacenados " + ex.Message);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            txtLote.Text = "";
+            txtPlanta_name.Text = "";
+            txtFecha.Text = "";
+            txtEstado.Text = "";
+            txtObserva.Text = "";
         }
     }
 }

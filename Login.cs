@@ -51,6 +51,11 @@ namespace El_Cafetal_APP
                             Admin admin = new Admin();
                             admin.Show();
                         }
+                        else if (idRol == 2)
+                        {
+                            Inventario inv = new Inventario();
+                            inv.Show();
+                        }
                         else
                         {
                             AgregarCultivo agregar = new AgregarCultivo();

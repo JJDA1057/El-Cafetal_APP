@@ -11,28 +11,53 @@ using System.Windows.Forms;
 
 namespace El_Cafetal_APP
 {
-    public partial class EditarSemilla : Form
+    public partial class EditarNutriente : Form
     {
-
-        private int _idSemilla;
-
-        public EditarSemilla(int idSemilla)
+        private int _idNutriente;
+        public EditarNutriente(int idNutriente)
         {
             InitializeComponent();
-            _idSemilla = idSemilla;
-            CargarDatosSemilla();
+            _idNutriente = idNutriente;
+            CargarDatosNutriente();
         }
 
-        private async void CargarDatosSemilla()
+        private async void CargarDatosNutriente()
         {
             try
             {
                 InsumoServices insumoService = new InsumoServices();
-                var insumo = await insumoService.ConsultarPorIdAsync(_idSemilla); // Asume que tienes este método
+                var insumo = await insumoService.ConsultarPorIdAsync(_idNutriente);
 
-                if (insumo != null && insumo.tipo.ToLower().Contains("semilla"))
+                string[] terminosNutrientes = new string[]
                 {
-                    Cid_insumo.Text = _idSemilla.ToString();
+                    "nutriente",
+                    "abono",
+                    "vitamina",
+                    "fertilizante",
+                    "mineral",  
+                    "compuesto",
+                    "bioestimulante", 
+                    "enmienda"       
+                };
+
+                // Verificar si el tipo contiene alguno de los términos
+                bool esNutriente = false;
+                if (insumo != null && insumo.tipo != null)
+                {
+                    string tipoLower = insumo.tipo.ToLower();
+                    foreach (string termino in terminosNutrientes)
+                    {
+                        if (tipoLower.Contains(termino))
+                        {
+                            esNutriente = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (esNutriente)
+                {
+                    Cid_insumo.Text = _idNutriente.ToString();
                     Cnombre.Text = insumo.nombre;
                     Ctipo.Text = insumo.tipo;
                     Cid_proveedor.Text = insumo.id_proveedor.ToString();
@@ -43,7 +68,7 @@ namespace El_Cafetal_APP
                 }
                 else
                 {
-                    MessageBox.Show("El insumo no es una semilla o no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El insumo no es un nutriente o no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Close();
                 }
             }
@@ -56,7 +81,6 @@ namespace El_Cafetal_APP
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             
-
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -73,7 +97,7 @@ namespace El_Cafetal_APP
 
                 // 2. Crear o recuperar el objeto insumo a actualizar
                 InsumoServices insumoService = new InsumoServices();
-                var insumo = await insumoService.ConsultarPorIdAsync(_idSemilla); // _idSemilla es el ID del formulario
+                var insumo = await insumoService.ConsultarPorIdAsync(_idNutriente); // _idNutriente es el ID del formulario
 
                 if (insumo == null)
                 {
@@ -132,11 +156,6 @@ namespace El_Cafetal_APP
                 this.Close();
 
             }
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
 
         }
 

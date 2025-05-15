@@ -132,6 +132,7 @@
             button2.TabIndex = 5;
             button2.Text = "Volver a Semillas";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // dateTimePicker2
             // 

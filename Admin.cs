@@ -46,7 +46,7 @@ namespace El_Cafetal_APP
             }
             catch (Exception ex) 
             {
-                MessageBox.Show("Debe ingresar un id valido para consulta.");
+                MessageBox.Show("Debe ingresar un id valido para consulta."+ex);
             }
 
         }
@@ -216,7 +216,7 @@ namespace El_Cafetal_APP
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Debe ingresar los datos para poder borrar.");
+                MessageBox.Show("Debe ingresar los datos para poder borrar."+ex);
             }
         }
 

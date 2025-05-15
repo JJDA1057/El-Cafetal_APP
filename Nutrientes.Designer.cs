@@ -1,6 +1,6 @@
 ﻿namespace El_Cafetal_APP
 {
-    partial class Plantas
+    partial class Nutrientes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            dataGridView1 = new DataGridView();
             button2 = new Button();
             label1 = new Label();
             button3 = new Button();
             button1 = new Button();
-            dataGridView1 = new DataGridView();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(56, 174);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(788, 316);
+            dataGridView1.TabIndex = 1;
             // 
             // button2
             // 
@@ -42,22 +52,23 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Segoe UI", 16F);
             button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(-10, -4);
+            button2.Location = new Point(-10, -5);
             button2.Name = "button2";
             button2.Size = new Size(108, 44);
             button2.TabIndex = 7;
             button2.Text = "Volver";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // label1
             // 
             label1.Font = new Font("Segoe UI", 22F);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(365, -4);
+            label1.Location = new Point(336, 9);
             label1.Name = "label1";
-            label1.Size = new Size(190, 39);
+            label1.Size = new Size(266, 50);
             label1.TabIndex = 6;
-            label1.Text = "PLANTAS";
+            label1.Text = "NUTRIENTES";
             // 
             // button3
             // 
@@ -65,7 +76,7 @@
             button3.FlatStyle = FlatStyle.Popup;
             button3.Font = new Font("Segoe UI", 16F);
             button3.ForeColor = SystemColors.ControlLightLight;
-            button3.Location = new Point(77, 79);
+            button3.Location = new Point(56, 87);
             button3.Name = "button3";
             button3.Size = new Size(165, 44);
             button3.TabIndex = 4;
@@ -78,45 +89,52 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Segoe UI", 16F);
             button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(264, 79);
+            button1.Location = new Point(262, 87);
             button1.Name = "button1";
             button1.Size = new Size(165, 44);
             button1.TabIndex = 5;
             button1.Text = "Editar";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
-            // dataGridView1
+            // button4
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(77, 147);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(783, 314);
-            dataGridView1.TabIndex = 8;
+            button4.BackColor = Color.FromArgb(156, 102, 68);
+            button4.FlatStyle = FlatStyle.Popup;
+            button4.Font = new Font("Segoe UI", 16F);
+            button4.ForeColor = SystemColors.ControlLightLight;
+            button4.Location = new Point(463, 87);
+            button4.Name = "button4";
+            button4.Size = new Size(165, 44);
+            button4.TabIndex = 8;
+            button4.Text = "Borrar";
+            button4.UseVisualStyleBackColor = false;
             // 
-            // Plantas
+            // Nutrientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(176, 137, 104);
-            ClientSize = new Size(949, 544);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(902, 502);
+            Controls.Add(button4);
             Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(button3);
             Controls.Add(button1);
-            Name = "Plantas";
-            Text = "Plantas";
+            Controls.Add(dataGridView1);
+            Name = "Nutrientes";
+            Text = "Nutrientes";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private DataGridView dataGridView1;
         private Button button2;
         private Label label1;
         private Button button3;
         private Button button1;
-        private DataGridView dataGridView1;
+        private Button button4;
     }
 }

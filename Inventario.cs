@@ -51,5 +51,24 @@ namespace El_Cafetal_APP
             }
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                using (Nutrientes nutri = new Nutrientes())
+                {
+                    this.Hide(); // Oculta Inventario
+                    nutri.ShowDialog(); // Muestra Semillas como modal
+                    this.Show(); // Al cerrar Semillas, vuelve a mostrar Inventario
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
     }
 }

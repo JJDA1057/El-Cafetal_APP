@@ -74,6 +74,7 @@
             button3.TabIndex = 2;
             button3.Text = "Nutrientes";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // label1
             // 

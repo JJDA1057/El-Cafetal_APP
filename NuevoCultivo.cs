@@ -72,5 +72,12 @@ namespace El_Cafetal_APP
         {
 
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
     }
 }

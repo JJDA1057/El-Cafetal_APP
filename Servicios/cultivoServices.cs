@@ -29,6 +29,10 @@ namespace El_Cafetal_APP.Servicios
         }
 
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin
     }
     
 }

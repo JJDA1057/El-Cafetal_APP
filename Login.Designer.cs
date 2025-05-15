@@ -33,65 +33,81 @@
             btnIniciar = new Button();
             label1 = new Label();
             label2 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // txtCorreo
             // 
-            txtCorreo.Location = new Point(202, 57);
+            txtCorreo.Location = new Point(225, 181);
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(112, 23);
             txtCorreo.TabIndex = 0;
             // 
             // txtClave
             // 
-            txtClave.Location = new Point(205, 142);
+            txtClave.Location = new Point(225, 244);
             txtClave.Name = "txtClave";
             txtClave.Size = new Size(112, 23);
             txtClave.TabIndex = 1;
             // 
             // btnIniciar
             // 
-            btnIniciar.Location = new Point(205, 229);
+            btnIniciar.BackColor = Color.Silver;
+            btnIniciar.Location = new Point(225, 305);
             btnIniciar.Name = "btnIniciar";
-            btnIniciar.Size = new Size(109, 49);
+            btnIniciar.Size = new Size(112, 32);
             btnIniciar.TabIndex = 2;
             btnIniciar.Text = "Iniciar sesión";
-            btnIniciar.UseVisualStyleBackColor = true;
+            btnIniciar.UseVisualStyleBackColor = false;
             btnIniciar.Click += btnIniciar_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(138, 65);
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(149, 181);
             label1.Name = "label1";
-            label1.Size = new Size(49, 15);
+            label1.Size = new Size(65, 19);
             label1.TabIndex = 3;
             label1.Text = "Correo: ";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(129, 145);
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(123, 244);
             label2.Name = "label2";
-            label2.Size = new Size(70, 15);
+            label2.Size = new Size(91, 19);
             label2.TabIndex = 4;
             label2.Text = "Contraseña:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.planta_de_cafe;
+            pictureBox1.Location = new Point(186, 23);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(151, 119);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(499, 388);
+            BackColor = Color.FromArgb(76, 175, 80);
+            ClientSize = new Size(488, 388);
+            Controls.Add(pictureBox1);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnIniciar);
             Controls.Add(txtClave);
             Controls.Add(txtCorreo);
-            Cursor = Cursors.Default;
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "Login";
             Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -103,5 +119,6 @@
         private Button btnIniciar;
         private Label label1;
         private Label label2;
+        private PictureBox pictureBox1;
     }
 }

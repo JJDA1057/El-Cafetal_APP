@@ -23,5 +23,12 @@ namespace El_Cafetal_APP
             cultivo.Show();
             this.Hide();
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+        }
     }
 }

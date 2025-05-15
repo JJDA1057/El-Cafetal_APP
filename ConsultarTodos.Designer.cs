@@ -36,7 +36,7 @@
             // 
             // dataGridViewUsuarios
             // 
-            dataGridViewUsuarios.BackgroundColor = Color.FromArgb(192, 64, 0);
+            dataGridViewUsuarios.BackgroundColor = Color.FromArgb(237, 224, 212);
             dataGridViewUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.DarkRed;
@@ -52,6 +52,7 @@
             dataGridViewUsuarios.Name = "dataGridViewUsuarios";
             dataGridViewUsuarios.Size = new Size(800, 263);
             dataGridViewUsuarios.TabIndex = 0;
+            dataGridViewUsuarios.CellContentClick += dataGridViewUsuarios_CellContentClick;
             // 
             // btnVolver
             // 

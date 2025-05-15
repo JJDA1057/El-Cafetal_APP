@@ -42,5 +42,10 @@ namespace El_Cafetal_APP
             admin.Show();
             this.Hide();
         }
+
+        private void dataGridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

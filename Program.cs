@@ -11,7 +11,7 @@ namespace El_Cafetal_APP
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new NuevoCultivo());
+            Application.Run(new Registrar());
         }
     }
 }

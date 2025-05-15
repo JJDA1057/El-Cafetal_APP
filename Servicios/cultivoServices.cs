@@ -21,14 +21,14 @@ namespace El_Cafetal_APP.Servicios
 
                 return response.IsSuccessStatusCode;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                Console.WriteLine("Error al agregar el cultivo : " + ex.Message );
+                Console.WriteLine("Error al agregar el cultivo : " + ex.Message);
                 return false;
             }
         }
 
 
-        public 
+        
     }
 }

@@ -1,7 +1,9 @@
 ﻿using El_Cafetal_APP.Clases;
+using El_Cafetal_APP.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -151,6 +153,67 @@ namespace El_Cafetal_APP.Servicios
                 return false;
             }
         }
+
+
+
+        public async Task<List<clsInsumo>> ConsultarNivelesBajosAsync()
+        {
+            try
+            {
+                var response = await _http.GetAsync($"{_baseUrl}/nivelesBajos");
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<List<clsInsumo>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al consultar niveles bajos: {ex.Message}");
+            }
+
+            return new List<clsInsumo>();
+        }
+
+        public async Task<List<clsInsumo>> ConsultarNivelesCriticosAsync()
+        {
+            try
+            {
+
+
+                var response = await _http.GetAsync($"{_baseUrl}/nivelesCriticos");
+                //var contenido = await response.Content.ReadAsStringAsync();
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<List<clsInsumo>>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al consultar niveles críticos: {ex.Message}");
+            }
+
+            return new List<clsInsumo>();
+        }
+
+        public async Task<TipoAlerta> VerificarNivelPorIdAsync(int id)
+        {
+            try
+            {
+                var response = await _http.GetAsync($"{_baseUrl}/verificar-nivel/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<TipoAlerta>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al verificar nivel: {ex.Message}");
+            }
+
+            return TipoAlerta.Normal;
+        }
+
     }
 
     // Modelo para actualización de cantidad (debe coincidir con el del controlador)
@@ -159,5 +222,7 @@ namespace El_Cafetal_APP.Servicios
             public int Cantidad { get; set; }
             public bool EsSuma { get; set; }
         }
+
+    
 }
 

@@ -40,7 +40,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Segoe UI", 16F);
             button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(151, 151);
+            button1.Location = new Point(387, 138);
             button1.Name = "button1";
             button1.Size = new Size(240, 56);
             button1.TabIndex = 0;
@@ -54,7 +54,7 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Segoe UI", 16F);
             button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(151, 286);
+            button2.Location = new Point(387, 258);
             button2.Name = "button2";
             button2.Size = new Size(240, 56);
             button2.TabIndex = 1;
@@ -68,7 +68,7 @@
             button3.FlatStyle = FlatStyle.Popup;
             button3.Font = new Font("Segoe UI", 16F);
             button3.ForeColor = SystemColors.ControlLightLight;
-            button3.Location = new Point(151, 422);
+            button3.Location = new Point(387, 383);
             button3.Name = "button3";
             button3.Size = new Size(240, 56);
             button3.TabIndex = 2;

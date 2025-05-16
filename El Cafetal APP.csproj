@@ -10,6 +10,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imagenes\CriticalIcon.png" />
+    <None Remove="Imagenes\InfoIcon.png" />
+    <None Remove="Imagenes\WarningIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Imagenes\CriticalIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\InfoIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\WarningIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="9.0.4" />
   </ItemGroup>

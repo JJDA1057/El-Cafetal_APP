@@ -138,5 +138,32 @@ namespace El_Cafetal_APP.Servicios
                 return new DataTable();
             }
         }
+
+        //GEt nutrientes por lote
+
+        public async Task<DataTable> ObtenerFertilizantesxLoteAsync(int idLote)
+        {
+
+            try
+            {
+                var respuesta = await _http.GetAsync($"{_baseUrl}/porLote/{idLote}");
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var json = await respuesta.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<DataTable>(json);
+                }
+                return new DataTable();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener nutrientes por lote: {ex.Message}");
+                return new DataTable();
+            }
+
+
+        }
+
     }
 }

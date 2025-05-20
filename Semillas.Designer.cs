@@ -31,8 +31,8 @@
             dataGridView1 = new DataGridView();
             button1 = new Button();
             label1 = new Label();
-            button2 = new Button();
             button3 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -63,25 +63,11 @@
             // 
             label1.Font = new Font("Segoe UI", 22F);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(364, 9);
+            label1.Location = new Point(384, 9);
             label1.Name = "label1";
             label1.Size = new Size(190, 39);
             label1.TabIndex = 2;
             label1.Text = "SEMILLAS";
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.FromArgb(156, 102, 68);
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Segoe UI", 16F);
-            button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(-11, -8);
-            button2.Name = "button2";
-            button2.Size = new Size(108, 44);
-            button2.TabIndex = 3;
-            button2.Text = "Volver";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -89,13 +75,27 @@
             button3.FlatStyle = FlatStyle.Popup;
             button3.Font = new Font("Segoe UI", 16F);
             button3.ForeColor = SystemColors.ControlLightLight;
-            button3.Location = new Point(80, 63);
+            button3.Location = new Point(509, 63);
             button3.Name = "button3";
             button3.Size = new Size(165, 44);
             button3.TabIndex = 1;
-            button3.Text = "Nueva";
+            button3.Text = "Borrar";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button2_Click;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(156, 102, 68);
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Segoe UI", 16F);
+            button2.ForeColor = SystemColors.Control;
+            button2.Location = new Point(-2, -7);
+            button2.Name = "button2";
+            button2.Size = new Size(116, 55);
+            button2.TabIndex = 3;
+            button2.Text = "Volver";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click_1;
             // 
             // Semillas
             // 
@@ -119,7 +119,7 @@
         private DataGridView dataGridView1;
         private Button button1;
         private Label label1;
-        private Button button2;
         private Button button3;
+        private Button button2;
     }
 }

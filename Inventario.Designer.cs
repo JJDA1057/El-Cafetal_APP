@@ -81,9 +81,9 @@
             label1.BackColor = Color.FromArgb(110, 44, 46);
             label1.Font = new Font("Segoe UI", 22F);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(3, -2);
+            label1.Location = new Point(-9, -2);
             label1.Name = "label1";
-            label1.Size = new Size(1064, 73);
+            label1.Size = new Size(1076, 71);
             label1.TabIndex = 3;
             label1.Text = "INVENTARIO";
             label1.TextAlign = ContentAlignment.MiddleCenter;

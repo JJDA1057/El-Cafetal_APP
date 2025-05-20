@@ -151,5 +151,191 @@ namespace El_Cafetal_APP
                 MessageBox.Show("ID inválido. Ingrese un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            AdmInsumosServices admService = new AdmInsumosServices();
+
+            // 1. Pedir al usuario el ID del lote
+            string input = Microsoft.VisualBasic.Interaction.InputBox(
+                "Ingrese el ID del lote:",
+                "Nutrientes Por Lote",
+                "");
+
+            // 2. Validar que se ingresó un valor
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                MessageBox.Show("Debe ingresar un ID de lote válido", "Advertencia",
+                               MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 3. Validar que sea un número
+            if (!int.TryParse(input, out int idLote))
+            {
+                MessageBox.Show("El ID del lote debe ser un número válido", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                // 4. Crear el formulario flotante
+                var formFlotante = new Form
+                {
+                    Text = $"Nutrientes para Lote {idLote}",
+                    StartPosition = FormStartPosition.CenterParent,
+                    FormBorderStyle = FormBorderStyle.SizableToolWindow,
+                    Width = 1000,
+                    Height = 600,
+                    ShowInTaskbar = false
+                };
+
+                // 5. Configurar DataGridView
+                var dgv = new DataGridView
+                {
+                    Dock = DockStyle.Fill,
+                    ReadOnly = true,
+                    AllowUserToAddRows = false,
+                    AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                    BackgroundColor = SystemColors.Window
+                };
+
+                // 6. Panel de carga
+                var panelCarga = new Panel { Dock = DockStyle.Fill };
+                var lblCarga = new Label
+                {
+                    Text = "Cargando datos del lote...",
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = new Font("Segoe UI", 12)
+                };
+                panelCarga.Controls.Add(lblCarga);
+                formFlotante.Controls.Add(panelCarga);
+                formFlotante.Show(); // Mostrar antes de cargar datos para mejor experiencia
+
+                // 7. Obtener datos asincrónicamente
+                var datos = await admService.ObtenerFertilizantesxLoteAsync(idLote);
+
+                // 8. Configurar datos en la grilla
+                formFlotante.Controls.Remove(panelCarga);
+                formFlotante.Controls.Add(dgv);
+
+                dgv.DataSource = datos;
+
+                // 9. Mejorar presentación de datos
+                dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
+                dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dgv.EnableHeadersVisualStyles = false;
+                dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
+                // 10. Configurar formato de columnas específicas
+                if (dgv.Columns.Contains("Cantidad"))
+                {
+                    dgv.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
+                    dgv.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+
+                if (dgv.Columns.Contains("Fecha"))
+                {
+                    dgv.Columns["Fecha"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    dgv.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+
+                // 11. Ajustar automáticamente el ancho de columnas después de cargar datos
+                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar nutrientes: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private async void button5_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                // 1. Pedir ID del insumo a borrar
+                string input = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Ingrese el ID del insumo a eliminar:",
+                    "Eliminar Insumo",
+                    "");
+
+                // 2. Validar que se ingresó un valor
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    MessageBox.Show("Debe ingresar un ID válido", "Advertencia",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 3. Validar que sea un número
+                if (!int.TryParse(input, out int idInsumo))
+                {
+                    MessageBox.Show("El ID debe ser un número válido", "Error",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 4. Crear instancia del servicio
+                var insumoService = new InsumoServices();
+
+                // 5. Obtener datos del insumo para confirmación
+                var resultadoConsulta = await insumoService.ConsultarPorIdAsync(idInsumo);
+
+                // Verificar si se obtuvieron datos
+                if (resultadoConsulta == null)
+                {
+                    MessageBox.Show($"No se encontró ningún insumo con ID {idInsumo}",
+                                  "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Obtener datos del objeto
+                string nombre = resultadoConsulta.nombre ?? "Desconocido"; 
+                string tipo = resultadoConsulta.tipo ?? "No especificado"; 
+
+                // 6. Mostrar datos y pedir confirmación
+                string mensajeConfirmacion = $"¿Está seguro que desea eliminar este insumo?\n\n" +
+                                           $"ID: {idInsumo}\n" +
+                                           $"Nombre: {nombre}\n" +
+                                           $"Tipo: {tipo}";
+
+                DialogResult confirmacion = MessageBox.Show(
+                    mensajeConfirmacion,
+                    "Confirmar Eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2);
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    // 7. Proceder con la eliminación
+                    bool eliminado = await insumoService.EliminarInsumoAsync(idInsumo);
+
+                    if (eliminado)
+                    {
+                        MessageBox.Show("Insumo eliminado correctamente", "Éxito",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar el insumo. Puede que esté en uso o no exista.",
+                                      "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al intentar eliminar el insumo: {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+        }
 }

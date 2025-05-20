@@ -31,8 +31,8 @@
             button2 = new Button();
             label1 = new Label();
             button3 = new Button();
-            button1 = new Button();
             dataGridView1 = new DataGridView();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -48,6 +48,7 @@
             button2.TabIndex = 7;
             button2.Text = "Volver";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click_1;
             // 
             // label1
             // 
@@ -71,19 +72,7 @@
             button3.TabIndex = 4;
             button3.Text = "Nueva";
             button3.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(156, 102, 68);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Segoe UI", 16F);
-            button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(264, 79);
-            button1.Name = "button1";
-            button1.Size = new Size(165, 44);
-            button1.TabIndex = 5;
-            button1.Text = "Editar";
-            button1.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // dataGridView1
             // 
@@ -94,17 +83,31 @@
             dataGridView1.Size = new Size(783, 314);
             dataGridView1.TabIndex = 8;
             // 
+            // button4
+            // 
+            button4.BackColor = Color.FromArgb(156, 102, 68);
+            button4.FlatStyle = FlatStyle.Popup;
+            button4.Font = new Font("Segoe UI", 16F);
+            button4.ForeColor = SystemColors.ControlLightLight;
+            button4.Location = new Point(504, 79);
+            button4.Name = "button4";
+            button4.Size = new Size(165, 44);
+            button4.TabIndex = 9;
+            button4.Text = "Borrar";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
             // Plantas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(176, 137, 104);
             ClientSize = new Size(949, 544);
+            Controls.Add(button4);
             Controls.Add(dataGridView1);
             Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(button3);
-            Controls.Add(button1);
             Name = "Plantas";
             Text = "Plantas";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -116,7 +119,7 @@
         private Button button2;
         private Label label1;
         private Button button3;
-        private Button button1;
         private DataGridView dataGridView1;
+        private Button button4;
     }
 }

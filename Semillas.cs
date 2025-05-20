@@ -93,10 +93,87 @@ namespace El_Cafetal_APP
             dataGridView1.Columns.Add(colEntrega);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
-            
-            this.Close(); // Cierra Semillas
+            try
+            {
+                // 1. Pedir ID del insumo a borrar
+                string input = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Ingrese el ID de la semilla a eliminar:",
+                    "Eliminar Semilla: ",
+                    "");
+
+                // 2. Validar que se ingresó un valor
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    MessageBox.Show("Debe ingresar un ID válido", "Advertencia",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 3. Validar que sea un número
+                if (!int.TryParse(input, out int idSemilla))
+                {
+                    MessageBox.Show("El ID debe ser un número válido", "Error",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 4. Crear instancia del servicio
+                var insumoService = new InsumoServices();
+
+                // 5. Obtener datos del insumo para confirmación
+                var resultadoConsulta = await insumoService.ConsultarPorIdAsync(idSemilla);
+
+                // Verificar si se obtuvieron datos
+                if (resultadoConsulta == null)
+                {
+                    MessageBox.Show($"No se encontró ninguna semilla con ID {idSemilla}",
+                                  "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Obtener datos del objeto
+                string nombre = resultadoConsulta.nombre ?? "Desconocido";
+                int cantidad = resultadoConsulta.cantidad;
+
+                // 6. Mostrar datos y pedir confirmación
+                string mensajeConfirmacion = $"¿Está seguro que desea eliminar este insumo?\n\n" +
+                                           $"ID: {idSemilla}\n" +
+                                           $"Nombre: {nombre}\n" +
+                                           $"Tipo: {cantidad}";
+
+                DialogResult confirmacion = MessageBox.Show(
+                    mensajeConfirmacion,
+                    "Confirmar Eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2);
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    // 7. Proceder con la eliminación
+                    bool eliminado = await insumoService.EliminarInsumoAsync(idSemilla);
+
+                    if (eliminado)
+                    {
+                        MessageBox.Show("Insumo eliminado correctamente", "Éxito",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar el insumo. Puede que esté en uso o no exista.",
+                                      "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al intentar eliminar el insumo: {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -114,7 +191,7 @@ namespace El_Cafetal_APP
                 EditarSemilla editarSemilla = new EditarSemilla(idSemilla);
                 editarSemilla.Show();
                 this.Hide();
-                
+
             }
             else
             {
@@ -122,6 +199,9 @@ namespace El_Cafetal_APP
             }
         }
 
-       
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -61,17 +61,25 @@ namespace El_Cafetal_APP.Servicios
         }
 
         // Registrar nuevo proveedor
-        public async Task<bool> RegistrarProveedorAsync(clsProveedor nuevoProveedor)
+        public async Task<string> RegistrarProveedorAsync(int id, string nombrep, string cel, string tipo)
         {
             try
             {
-                var response = await _http.PostAsJsonAsync($"{_baseUrl}/Insertar", nuevoProveedor);
-                return response.IsSuccessStatusCode;
+                var prov = new
+                {
+                    id_proveedor = id,
+                    nombre = nombrep,
+                    cel_fijo = cel,
+                    tipo_material = tipo
+                };
+
+                var response = await _http.PostAsJsonAsync($"{_baseUrl}/Registrar", prov);
+                return await response.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al registrar proveedor: {ex.Message}");
-                return false;
+                Console.WriteLine($"Error al registrar planta: {ex.Message}");
+                return $"Error al registrar planta: {ex.Message}";
             }
         }
 

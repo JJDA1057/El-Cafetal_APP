@@ -30,7 +30,6 @@
         {
             button2 = new Button();
             label1 = new Label();
-            button3 = new Button();
             dataGridView1 = new DataGridView();
             button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -60,20 +59,6 @@
             label1.TabIndex = 6;
             label1.Text = "PLANTAS";
             // 
-            // button3
-            // 
-            button3.BackColor = Color.FromArgb(156, 102, 68);
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.Font = new Font("Segoe UI", 16F);
-            button3.ForeColor = SystemColors.ControlLightLight;
-            button3.Location = new Point(77, 79);
-            button3.Name = "button3";
-            button3.Size = new Size(165, 44);
-            button3.TabIndex = 4;
-            button3.Text = "Nueva";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
-            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -89,7 +74,7 @@
             button4.FlatStyle = FlatStyle.Popup;
             button4.Font = new Font("Segoe UI", 16F);
             button4.ForeColor = SystemColors.ControlLightLight;
-            button4.Location = new Point(504, 79);
+            button4.Location = new Point(695, 80);
             button4.Name = "button4";
             button4.Size = new Size(165, 44);
             button4.TabIndex = 9;
@@ -107,7 +92,6 @@
             Controls.Add(dataGridView1);
             Controls.Add(button2);
             Controls.Add(label1);
-            Controls.Add(button3);
             Name = "Plantas";
             Text = "Plantas";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -118,7 +102,6 @@
 
         private Button button2;
         private Label label1;
-        private Button button3;
         private DataGridView dataGridView1;
         private Button button4;
     }

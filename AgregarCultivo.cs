@@ -20,15 +20,28 @@ namespace El_Cafetal_APP
         private void btnCultivo_Click(object sender, EventArgs e)
         {
             NuevoCultivo cultivo = new NuevoCultivo();
-            cultivo.Show();
             this.Hide();
+            cultivo.Show();
+            this.Show();
+            
+           
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            login.Show();
             this.Hide();
+            login.Show();
+            this.Show();
+            
+        }
+
+        private void btnPlanta_Click(object sender, EventArgs e)
+        {
+            AgregarPlanta pl = new AgregarPlanta();
+            this.Hide();
+            pl.Show();
+            this.Show();
         }
     }
 }

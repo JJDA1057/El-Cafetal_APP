@@ -16,17 +16,32 @@ namespace El_Cafetal_APP.Servicios
         private readonly string _baseUrl = "https://localhost:44302/api/Insumo";
 
         // Registrar nuevo insumo
-        public async Task<bool> RegistrarInsumoAsync(clsInsumo nuevoInsumo)
+        public async Task<string> RegistrarInsumoAsync(int id, string nombreI, string tipoI, int id_prov, int cant, DateTime fecha)
         {
             try
             {
-                var response = await _http.PostAsJsonAsync($"{_baseUrl}/Insertar", nuevoInsumo);
-                return response.IsSuccessStatusCode;
+                var insu = new
+                {
+                    id_insumo = id,
+                    nombre = nombreI,
+                    tipo = tipoI,
+                    id_proveedor = id_prov,
+                    cantidad = cant,
+                    f_entrega = fecha
+                };
+
+                var response = await _http.PostAsJsonAsync($"{_baseUrl}/Registrar", insu);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return $"Error: {response.StatusCode}";
+                }
+
+                return await response.Content.ReadAsStringAsync(); // Devuelve el mensaje del API
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al registrar insumo: {ex.Message}");
-                return false;
+                return $"Error al registrar insumo: {ex.Message}";
             }
         }
 

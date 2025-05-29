@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace El_Cafetal_APP.Servicios
 {
-    public class ProveedorServices
+    public class proveedorServices
     {
         private readonly HttpClient _http = new HttpClient();
         private readonly string _baseUrl = "https://localhost:44302/api/Proveedores";

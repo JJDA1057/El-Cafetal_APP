@@ -156,13 +156,11 @@ namespace El_Cafetal_APP
         {
             AdmInsumosServices admService = new AdmInsumosServices();
 
-            // 1. Pedir al usuario el ID del lote
             string input = Microsoft.VisualBasic.Interaction.InputBox(
                 "Ingrese el ID del lote:",
                 "Nutrientes Por Lote",
                 "");
 
-            // 2. Validar que se ingresó un valor
             if (string.IsNullOrWhiteSpace(input))
             {
                 MessageBox.Show("Debe ingresar un ID de lote válido", "Advertencia",
@@ -170,7 +168,6 @@ namespace El_Cafetal_APP
                 return;
             }
 
-            // 3. Validar que sea un número
             if (!int.TryParse(input, out int idLote))
             {
                 MessageBox.Show("El ID del lote debe ser un número válido", "Error",
@@ -178,80 +175,87 @@ namespace El_Cafetal_APP
                 return;
             }
 
+            // Formulario contenedor
+            var formFlotante = new Form
+            {
+                Text = $"Nutrientes para Lote {idLote}",
+                StartPosition = FormStartPosition.CenterParent,
+                FormBorderStyle = FormBorderStyle.SizableToolWindow,
+                Width = 1000,
+                Height = 600,
+                ShowInTaskbar = false
+            };
+
+            // Panel de carga
+            var panelCarga = new Panel { Dock = DockStyle.Fill };
+            var lblCarga = new Label
+            {
+                Text = "Cargando datos del lote...",
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Font = new Font("Segoe UI", 12)
+            };
+            panelCarga.Controls.Add(lblCarga);
+            formFlotante.Controls.Add(panelCarga);
+            formFlotante.Show(); // Mostrar mientras se carga
+
             try
             {
-                // 4. Crear el formulario flotante
-                var formFlotante = new Form
-                {
-                    Text = $"Nutrientes para Lote {idLote}",
-                    StartPosition = FormStartPosition.CenterParent,
-                    FormBorderStyle = FormBorderStyle.SizableToolWindow,
-                    Width = 1000,
-                    Height = 600,
-                    ShowInTaskbar = false
-                };
+                // Obtener datos
+                DataTable datos = await admService.ObtenerFertilizantesxLoteAsync(idLote);
 
-                // 5. Configurar DataGridView
+                // Crear y configurar DataGridView
                 var dgv = new DataGridView
                 {
                     Dock = DockStyle.Fill,
                     ReadOnly = true,
                     AllowUserToAddRows = false,
                     AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                    BackgroundColor = SystemColors.Window
+                    BackgroundColor = SystemColors.Window,
+                    DataSource = datos
                 };
 
-                // 6. Panel de carga
-                var panelCarga = new Panel { Dock = DockStyle.Fill };
-                var lblCarga = new Label
-                {
-                    Text = "Cargando datos del lote...",
-                    Dock = DockStyle.Fill,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    Font = new Font("Segoe UI", 12)
-                };
-                panelCarga.Controls.Add(lblCarga);
-                formFlotante.Controls.Add(panelCarga);
-                formFlotante.Show(); // Mostrar antes de cargar datos para mejor experiencia
-
-                // 7. Obtener datos asincrónicamente
-                var datos = await admService.ObtenerFertilizantesxLoteAsync(idLote);
-
-                // 8. Configurar datos en la grilla
-                formFlotante.Controls.Remove(panelCarga);
-                formFlotante.Controls.Add(dgv);
-
-                dgv.DataSource = datos;
-
-                // 9. Mejorar presentación de datos
+                // Estilos
                 dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
                 dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 dgv.EnableHeadersVisualStyles = false;
                 dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
 
-                // 10. Configurar formato de columnas específicas
-                if (dgv.Columns.Contains("Cantidad"))
+                // Formato de columnas comunes
+                if (dgv.Columns.Contains("cant_usada"))
                 {
                     dgv.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
                     dgv.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
 
-                if (dgv.Columns.Contains("Fecha"))
+                if (dgv.Columns.Contains("id_insumo"))
+                {
+                    dgv.Columns["Id insumo"].DefaultCellStyle.Format = "#";
+                    dgv.Columns["Id insumo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+
+                if (dgv.Columns.Contains("fecha_aplic"))
                 {
                     dgv.Columns["Fecha"].DefaultCellStyle.Format = "dd/MM/yyyy";
                     dgv.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
 
-                // 11. Ajustar automáticamente el ancho de columnas después de cargar datos
                 dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
+                // Reemplazar panel de carga por la grilla
+                formFlotante.Controls.Clear();
+                formFlotante.Controls.Add(dgv);
             }
             catch (Exception ex)
             {
+                formFlotante.Close();
                 MessageBox.Show($"Error al cargar nutrientes: {ex.Message}", "Error",
                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-
         }
+
+
 
         private async void button5_Click(object sender, EventArgs e)
         {

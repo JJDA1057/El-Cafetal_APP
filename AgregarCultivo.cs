@@ -23,8 +23,8 @@ namespace El_Cafetal_APP
             this.Hide();
             cultivo.Show();
             this.Show();
-            
-           
+
+
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace El_Cafetal_APP
             this.Hide();
             login.Show();
             this.Show();
-            
+
         }
 
         private void btnPlanta_Click(object sender, EventArgs e)
@@ -42,6 +42,23 @@ namespace El_Cafetal_APP
             this.Hide();
             pl.Show();
             this.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (Pedidos ped = new Pedidos())
+                {
+                    this.Hide(); // Oculta Inventario
+                    ped.ShowDialog(); // Muestra pagina como modal
+                    this.Show(); // Al cerrar Semillas, vuelve a mostrar Inventario
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

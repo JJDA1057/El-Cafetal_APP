@@ -18,6 +18,7 @@ namespace El_Cafetal_APP
         public AgregarPlanta()
         {
             InitializeComponent();
+            this.Load += new System.EventHandler(this.Form1_Load);
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -92,5 +93,79 @@ namespace El_Cafetal_APP
         {
             this.Close();
         }
+
+        private void ConfigurarDataGridView()
+        {
+            // Limpiar columnas existentes
+            dataGridView1.Columns.Clear();
+
+            // Configurar propiedades básicas del DataGridView
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // Crear y agregar columnas
+            DataGridViewTextBoxColumn colID = new DataGridViewTextBoxColumn();
+            colID.Name = "ID-Planta";
+            colID.DataPropertyName = "id_planta";
+            colID.HeaderText = "ID-Planta";
+            dataGridView1.Columns.Add(colID);
+
+            DataGridViewTextBoxColumn colIdLote = new DataGridViewTextBoxColumn();
+            colIdLote.Name = "ID-LOTE";
+            colIdLote.DataPropertyName = "id_lote"; // Debe coincidir con la propiedad exacta
+            colIdLote.HeaderText = "ID-Lote";
+            dataGridView1.Columns.Add(colIdLote);
+
+            DataGridViewTextBoxColumn colEstado = new DataGridViewTextBoxColumn();
+            colEstado.Name = "Estado";
+            colEstado.DataPropertyName = "estado";
+            colEstado.HeaderText = "Estado";
+            dataGridView1.Columns.Add(colEstado);
+
+            // Mostrar solo el ID del proveedor
+            DataGridViewTextBoxColumn colObservacion = new DataGridViewTextBoxColumn();
+            colObservacion.Name = "Observacion";
+            colObservacion.DataPropertyName = "observaciones"; // ID directamente
+            colObservacion.HeaderText = "Observacion";
+            dataGridView1.Columns.Add(colObservacion);
+
+            DataGridViewTextBoxColumn colEntrega = new DataGridViewTextBoxColumn();
+            colEntrega.Name = "Fecha-Plantacion";
+            colEntrega.DataPropertyName = "fecha_plantacion";
+            colEntrega.HeaderText = "Fecha-Plantacion";
+            dataGridView1.Columns.Add(colEntrega);
+        }
+
+        private async void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                List<clsPlanta> resultadoCompleto = new List<clsPlanta>();
+
+                plantaServices plant = new plantaServices();
+                ConfigurarDataGridView();
+
+                // Esperar a que termine la operación async
+                resultadoCompleto = await plant.ConsultarTodasAsync();
+
+                if (resultadoCompleto?.Count > 0)
+                {
+                    dataGridView1.DataSource = resultadoCompleto;
+                }
+                else
+                {
+                    dataGridView1.DataSource = null;
+                    MessageBox.Show("No se encontraron plantas en la base de datos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar las plantas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

@@ -37,13 +37,14 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(156, 102, 68);
+            button2.BackColor = Color.FromArgb(74, 74, 74);
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Segoe UI", 16F);
             button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(-10, -4);
+            button2.Location = new Point(-9, -3);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(108, 44);
+            button2.Size = new Size(94, 33);
             button2.TabIndex = 7;
             button2.Text = "Volver";
             button2.UseVisualStyleBackColor = false;
@@ -52,31 +53,33 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI", 22F);
-            label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(365, -4);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.Location = new Point(329, -3);
             label1.Name = "label1";
-            label1.Size = new Size(190, 39);
+            label1.Size = new Size(150, 51);
             label1.TabIndex = 6;
             label1.Text = "PLANTAS";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(77, 147);
+            dataGridView1.Location = new Point(67, 110);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(783, 314);
+            dataGridView1.Size = new Size(685, 236);
             dataGridView1.TabIndex = 8;
             // 
             // button4
             // 
-            button4.BackColor = Color.FromArgb(156, 102, 68);
+            button4.BackColor = Color.FromArgb(74, 74, 74);
             button4.FlatStyle = FlatStyle.Popup;
             button4.Font = new Font("Segoe UI", 16F);
             button4.ForeColor = SystemColors.ControlLightLight;
-            button4.Location = new Point(695, 80);
+            button4.Location = new Point(608, 60);
+            button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
-            button4.Size = new Size(165, 44);
+            button4.Size = new Size(144, 33);
             button4.TabIndex = 9;
             button4.Text = "Borrar";
             button4.UseVisualStyleBackColor = false;
@@ -84,14 +87,15 @@
             // 
             // Plantas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(176, 137, 104);
-            ClientSize = new Size(949, 544);
+            BackColor = Color.FromArgb(197, 225, 165);
+            ClientSize = new Size(830, 408);
             Controls.Add(button4);
             Controls.Add(dataGridView1);
             Controls.Add(button2);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Plantas";
             Text = "Plantas";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

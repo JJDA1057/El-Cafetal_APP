@@ -40,10 +40,9 @@
             // btnCultivo
             // 
             btnCultivo.BackColor = Color.Silver;
-            btnCultivo.Location = new Point(198, 59);
-            btnCultivo.Margin = new Padding(3, 4, 3, 4);
+            btnCultivo.Location = new Point(173, 44);
             btnCultivo.Name = "btnCultivo";
-            btnCultivo.Size = new Size(149, 51);
+            btnCultivo.Size = new Size(130, 38);
             btnCultivo.TabIndex = 0;
             btnCultivo.Text = "Agregar cultivo";
             btnCultivo.UseVisualStyleBackColor = false;
@@ -52,10 +51,9 @@
             // btnLote
             // 
             btnLote.BackColor = Color.Silver;
-            btnLote.Location = new Point(198, 160);
-            btnLote.Margin = new Padding(3, 4, 3, 4);
+            btnLote.Location = new Point(173, 120);
             btnLote.Name = "btnLote";
-            btnLote.Size = new Size(149, 51);
+            btnLote.Size = new Size(130, 38);
             btnLote.TabIndex = 1;
             btnLote.Text = "Agregar lote";
             btnLote.UseVisualStyleBackColor = false;
@@ -63,10 +61,9 @@
             // btnPlanta
             // 
             btnPlanta.BackColor = Color.Silver;
-            btnPlanta.Location = new Point(198, 267);
-            btnPlanta.Margin = new Padding(3, 4, 3, 4);
+            btnPlanta.Location = new Point(173, 200);
             btnPlanta.Name = "btnPlanta";
-            btnPlanta.Size = new Size(149, 51);
+            btnPlanta.Size = new Size(130, 38);
             btnPlanta.TabIndex = 2;
             btnPlanta.Text = "Agregar planta";
             btnPlanta.UseVisualStyleBackColor = false;
@@ -76,10 +73,9 @@
             // 
             btnSalir.BackColor = Color.FromArgb(229, 115, 115);
             btnSalir.FlatStyle = FlatStyle.Flat;
-            btnSalir.Location = new Point(422, 28);
-            btnSalir.Margin = new Padding(3, 4, 3, 4);
+            btnSalir.Location = new Point(369, 21);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(97, 33);
+            btnSalir.Size = new Size(85, 25);
             btnSalir.TabIndex = 3;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
@@ -88,10 +84,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.los_granos_de_cafe;
-            pictureBox1.Location = new Point(14, 16);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(136, 128);
+            pictureBox1.Size = new Size(119, 96);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -101,26 +96,27 @@
             button1.BackColor = Color.Silver;
             button1.Font = new Font("Segoe UI", 10F);
             button1.ForeColor = Color.Black;
-            button1.Location = new Point(198, 356);
+            button1.Location = new Point(173, 267);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(149, 45);
+            button1.Size = new Size(130, 34);
             button1.TabIndex = 5;
             button1.Text = "Pedidos";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // AgregarCultivo
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 225, 165);
-            ClientSize = new Size(533, 428);
+            ClientSize = new Size(469, 352);
             Controls.Add(button1);
             Controls.Add(pictureBox1);
             Controls.Add(btnSalir);
             Controls.Add(btnPlanta);
             Controls.Add(btnLote);
             Controls.Add(btnCultivo);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "AgregarCultivo";
             Text = "AgregarCultivo";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

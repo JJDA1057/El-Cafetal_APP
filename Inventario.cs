@@ -19,14 +19,14 @@ namespace El_Cafetal_APP
         private System.Windows.Forms.Timer _timerInventario;
 
         private MonitorInventario _monitor;
-        private List<IInventarioObserver> _observadores = new List<IInventarioObserver> ();
+        private List<IInventarioObserver> _observadores = new List<IInventarioObserver>();
         public Inventario()
         {
             InitializeComponent();
             this.Load += Inventario_Load;
         }
 
-       
+
 
 
         private async void Inventario_Load(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace El_Cafetal_APP
         }
         private async void Timer_Tick(object sender, EventArgs e)
         {
-              await _monitor.VerificarInventario(); // esto notificará si encuentra insumos en alerta
+            await _monitor.VerificarInventario(); // esto notificará si encuentra insumos en alerta
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -126,7 +126,7 @@ namespace El_Cafetal_APP
                 using (Plantas plantas = new Plantas())
                 {
                     this.Hide(); // Oculta Inventario
-                    plantas.ShowDialog(); // Muestra Semillas como modal
+                    plantas.ShowDialog(); // Muestra pagina como modal
                     this.Show(); // Al cerrar Semillas, vuelve a mostrar Inventario
                 }
             }
@@ -154,6 +154,14 @@ namespace El_Cafetal_APP
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            this.Close();
+            login.Show();
+            
         }
     }
 }

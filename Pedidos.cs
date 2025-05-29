@@ -27,7 +27,7 @@ namespace El_Cafetal_APP
             {
                 List<clsProveedor> resultadoCompleto = new List<clsProveedor>();
 
-                ProveedorServices prov = new ProveedorServices();
+                proveedorServices prov = new proveedorServices();
                 ConfigurarDataGridView();
 
                 // Esperar a que termine la operación async
@@ -101,9 +101,9 @@ namespace El_Cafetal_APP
             {
                 using (AgregarPedido ped = new AgregarPedido())
                 {
-                    this.Hide(); // Oculta Inventario
-                    ped.ShowDialog(); // Muestra Semillas como modal
-                    this.Show(); // Al cerrar Semillas, vuelve a mostrar Inventario
+                    this.Hide(); // Oculta pagina actual
+                    ped.ShowDialog(); // Muestra clase como modal
+                    this.Show(); // Al cerrar, vuelve a mostrar pagina
                 }
             }
             catch (Exception ex)
@@ -116,10 +116,10 @@ namespace El_Cafetal_APP
         {
             try
             {
-                // 1. Pedir ID del insumo a borrar
+                // 1. Pedir ID del proveedor a borrar
                 string input = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Ingrese el ID del planta a eliminar:",
-                    "Eliminar Planta: ",
+                    "Ingrese el ID del proveedor a eliminar:",
+                    "Eliminar proveedor: ",
                     "");
 
                 // 2. Validar que se ingresó un valor
@@ -139,15 +139,15 @@ namespace El_Cafetal_APP
                 }
 
                 // 4. Crear instancia del servicio
-                var Service = new ProveedorServices();
+                var Service = new proveedorServices();
 
-                // 5. Obtener datos del insumo para confirmación
+                // 5. Obtener datos para confirmación
                 var resultadoConsulta = await Service.ConsultarPorIdAsync(idProv);
 
                 // Verificar si se obtuvieron datos
                 if (resultadoConsulta == null)
                 {
-                    MessageBox.Show($"No se encontró ningún insumo con ID {idProv}",
+                    MessageBox.Show($"No se encontró ningún Proveedor con ID {idProv}",
                                   "Información",
                                   MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -160,7 +160,7 @@ namespace El_Cafetal_APP
 
 
                 // 6. Mostrar datos y pedir confirmación
-                string mensajeConfirmacion = $"¿Está seguro que desea eliminar este insumo?\n\n" +
+                string mensajeConfirmacion = $"¿Está seguro que desea eliminar este proveedor?\n\n" +
                                            $"ID: {id}\n" +
                                            $"NOMBRE: {nombre}\n" +
                                            $"TIPO MATERIAL: {estado}";
@@ -179,19 +179,19 @@ namespace El_Cafetal_APP
 
                     if (eliminado)
                     {
-                        MessageBox.Show("Insumo eliminado correctamente", "Éxito",
+                        MessageBox.Show("Proveedor eliminado correctamente", "Éxito",
                                       MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo eliminar el insumo. Puede que esté en uso o no exista.",
+                        MessageBox.Show("No se pudo eliminar el proveedor. Puede que esté en uso o no exista.",
                                       "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al intentar eliminar el insumo: {ex.Message}",
+                MessageBox.Show($"Error al intentar eliminar el proveedor: {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -199,6 +199,24 @@ namespace El_Cafetal_APP
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (AgregarInsumo ins = new AgregarInsumo())
+                {
+                    this.Hide(); // Oculta Inventario
+                    ins.ShowDialog(); // Muestra pagina como modal
+                    this.Show(); // Al cerrar Semillas, vuelve a mostrar Inventario
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

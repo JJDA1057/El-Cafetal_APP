@@ -23,7 +23,7 @@ namespace El_Cafetal_APP
         {
             try
             {
-                ProveedorServices prov = new ProveedorServices();
+                proveedorServices prov = new proveedorServices();
                 // 1. Validación mínima de campos requeridos
                 if (string.IsNullOrWhiteSpace(Cid.Text) ||
                     string.IsNullOrWhiteSpace(Cnombre.Text) ||
@@ -56,7 +56,7 @@ namespace El_Cafetal_APP
                 };
 
                 // 4. Llamar al servicio
-                string resultado = await new ProveedorServices().RegistrarProveedorAsync(
+                string resultado = await new proveedorServices().RegistrarProveedorAsync(
                     nuevo.id_proveedor,
                     nuevo.nombre,
                     nuevo.cel_fijo,

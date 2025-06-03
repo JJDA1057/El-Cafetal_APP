@@ -190,12 +190,40 @@ namespace El_Cafetal_APP.Servicios
                 return null;
             }
         }
-    }
 
-    // Modelo para cambio de estado (debe coincidir con el del controlador)
-    public class CambioEstadoModel
-    {
-        public string NuevoEstado { get; set; }
-        public DateTime? FechaFin { get; set; }
+
+        // Elimina los lotes por ID
+        public async Task<bool> BorrarLoteAsync(int idLote)
+        {
+            try
+            {
+                var respuesta = await _http.DeleteAsync($"{_baseUrl}/eliminar/{idLote}");
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Su Lote {idLote}  fue eliminado");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine($"Error al eliminar el lote");
+                    return false;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Su lote {idLote} no fue eliminado");
+                return false;
+
+            }
+        }
+
+        // Modelo para cambio de estado (debe coincidir con el del controlador)
+        public class CambioEstadoModel
+        {
+            public string NuevoEstado { get; set; }
+            public DateTime? FechaFin { get; set; }
+        }
     }
 }

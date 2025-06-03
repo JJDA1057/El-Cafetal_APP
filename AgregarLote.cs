@@ -1,5 +1,4 @@
-﻿
-using El_Cafetal_APP.Clases;
+﻿using El_Cafetal_APP.Clases;
 using El_Cafetal_APP.Servicios;
 using System;
 using System.Collections.Generic;
@@ -20,13 +19,13 @@ namespace El_Cafetal_APP
             InitializeComponent();
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private async void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
                 if (string.IsNullOrEmpty(txtId.Text) || string.IsNullOrEmpty(txtIDuser.Text)
                     || string.IsNullOrEmpty(txtEstado.Text) || string.IsNullOrEmpty(txtArea.Text)
-                    || string.IsNullOrEmpty(txtCant_plant.Text) || string.IsNullOrEmpty(txtObserv.Text)|| string.IsNullOrEmpty(txtId_Cultivo.Text))
+                    || string.IsNullOrEmpty(txtCant_plant.Text) || string.IsNullOrEmpty(txtObserv.Text) || string.IsNullOrEmpty(txtId_Cultivo.Text))
                 {
                     MessageBox.Show("Por favor ingrese todos los campos.");
                     return;
@@ -46,20 +45,21 @@ namespace El_Cafetal_APP
                     id_lote = id,
                     id_usuario = id_usuario,
                     estado = estado,
-                    inicio_siembra= DateTime.Now,
-                    fecha_fin_siembra = DateTime.Now.AddMonths(12),
-                    ubicacion= txtArea.Text.Trim(),
+                    inicio_siembra = DateTime.Now,
+                    fecha_fin_siembra = DateTime.Now.AddMonths(12), // 12, por si la siembra se sostiene por un año
+                    ubicacion = txtArea.Text.Trim(),
                     cantidad_plantas = cant_plant,
                     observaciones = observaciones,
                     id_cultivo = int.Parse(id_cultivo)
                 };
 
-                LoteServices lot= new LoteServices();
-                bool registro = lot.Equals(nuevoLote);
-                
+                LoteServices lot = new LoteServices();
+                bool registro = await lot.RegistrarLoteAsync(nuevoLote);
+
                 if (registro)
                 {
                     MessageBox.Show("Su lote fue diligenciado con exito.");
+                    this.Close();
                 }
                 else
                 {
@@ -71,6 +71,20 @@ namespace El_Cafetal_APP
             {
                 MessageBox.Show($"Error: Se presento un percance y no se pudo registrar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void btnVolver_Cultivos_Click(object sender, EventArgs e)
+        {
+            AgregarCultivo back = new AgregarCultivo();
+            back.Show();
+            this.Hide();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Login log = new Login();
+            this.Hide();
+            log.Show();
+            this.Show();
         }
     }
 }

@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             lblLotes = new Label();
-            dataGridView1 = new DataGridView();
+            dataGridViewLotes = new DataGridView();
             btnBorrar = new Button();
             btnVolver = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btnSalir = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewLotes).BeginInit();
             SuspendLayout();
             // 
             // lblLotes
@@ -46,17 +47,17 @@
             lblLotes.TabIndex = 2;
             lblLotes.Text = "Lotes";
             lblLotes.TextAlign = ContentAlignment.MiddleCenter;
-            lblLotes.Click += this.label1_Click;
             // 
-            // dataGridView1
+            // dataGridViewLotes
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(34, 139);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(717, 244);
-            dataGridView1.TabIndex = 3;
+            dataGridViewLotes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewLotes.Location = new Point(21, 139);
+            dataGridViewLotes.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewLotes.Name = "dataGridViewLotes";
+            dataGridViewLotes.RowHeadersWidth = 51;
+            dataGridViewLotes.Size = new Size(752, 244);
+            dataGridViewLotes.TabIndex = 3;
+            dataGridViewLotes.CellContentClick += dataGridViewLotes_CellContentClick;
             // 
             // btnBorrar
             // 
@@ -64,13 +65,14 @@
             btnBorrar.FlatStyle = FlatStyle.Popup;
             btnBorrar.Font = new Font("Segoe UI", 16F);
             btnBorrar.ForeColor = SystemColors.ControlLightLight;
-            btnBorrar.Location = new Point(588, 87);
+            btnBorrar.Location = new Point(629, 87);
             btnBorrar.Margin = new Padding(3, 2, 3, 2);
             btnBorrar.Name = "btnBorrar";
             btnBorrar.Size = new Size(144, 33);
             btnBorrar.TabIndex = 10;
             btnBorrar.Text = "Borrar";
             btnBorrar.UseVisualStyleBackColor = false;
+            btnBorrar.Click += btnBorrar_Click_1;
             // 
             // btnVolver
             // 
@@ -85,6 +87,19 @@
             btnVolver.TabIndex = 11;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += btnVolver_Click_1;
+            // 
+            // btnSalir
+            // 
+            btnSalir.BackColor = Color.FromArgb(229, 115, 115);
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Location = new Point(690, 7);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(94, 25);
+            btnSalir.TabIndex = 25;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = false;
+            btnSalir.Click += btnSalir_Click;
             // 
             // Lote
             // 
@@ -92,13 +107,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 225, 165);
             ClientSize = new Size(785, 419);
+            Controls.Add(btnSalir);
             Controls.Add(btnVolver);
             Controls.Add(btnBorrar);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewLotes);
             Controls.Add(lblLotes);
             Name = "Lote";
             Text = "Lote";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewLotes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -106,8 +122,9 @@
         #endregion
 
         private Label lblLotes;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewLotes;
         private Button btnBorrar;
         private Button btnVolver;
+        private Button btnSalir;
     }
 }

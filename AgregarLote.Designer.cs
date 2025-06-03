@@ -51,6 +51,7 @@ namespace El_Cafetal_APP
             pictureBox1 = new PictureBox();
             btnAgregar = new Button();
             btnVolver_Cultivos = new Button();
+            btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -240,12 +241,26 @@ namespace El_Cafetal_APP
             btnVolver_Cultivos.UseVisualStyleBackColor = false;
             btnVolver_Cultivos.Click += btnVolver_Cultivos_Click;
             // 
+            // btnSalir
+            // 
+            btnSalir.BackColor = Color.FromArgb(229, 115, 115);
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Location = new Point(491, 6);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(85, 25);
+            btnSalir.TabIndex = 24;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = false;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // AgregarLote
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 225, 165);
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(588, 430);
+            Controls.Add(btnSalir);
             Controls.Add(btnVolver_Cultivos);
             Controls.Add(btnAgregar);
             Controls.Add(pictureBox1);
@@ -274,16 +289,6 @@ namespace El_Cafetal_APP
             PerformLayout();
         }
 
-        private void btnVolver_Cultivos_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-            AgregarCultivo back = new AgregarCultivo();  
-            back.Show();
-            this.Hide();
-
-
-        }
-
         #endregion
 
         private TextBox txtId;
@@ -307,5 +312,6 @@ namespace El_Cafetal_APP
         private PictureBox pictureBox1;
         private Button btnAgregar;
         private Button btnVolver_Cultivos;
+        private Button btnSalir;
     }
 }

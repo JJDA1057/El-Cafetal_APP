@@ -15,7 +15,7 @@ namespace El_Cafetal_APP.Clases
         public DateTime inicio_siembra { get; set; }
         public string estado { get; set; }
         public DateTime fecha_fin_siembra { get; set; }
-        public decimal area { get; set; }
+        public string ubicacion { get; set; }   
         public int cantidad_plantas { get; set; }
         public string observaciones { get; set; }
         public int id_cultivo { get; set; }

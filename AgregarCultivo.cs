@@ -60,5 +60,13 @@ namespace El_Cafetal_APP
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnLote_Click(object sender, EventArgs e)
+        {
+            AgregarLote lt= new AgregarLote();
+            this.Hide();
+            lt.Show();
+            this.Show();
+        }
     }
 }

@@ -57,6 +57,7 @@
             btnLote.TabIndex = 1;
             btnLote.Text = "Agregar lote";
             btnLote.UseVisualStyleBackColor = false;
+            btnLote.Click += btnLote_Click;
             // 
             // btnPlanta
             // 
